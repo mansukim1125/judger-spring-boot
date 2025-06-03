@@ -9,7 +9,7 @@ import java.util.concurrent.ConcurrentHashMap;
 public class UserRepository {
     private final ConcurrentHashMap<UUID, User> users = new ConcurrentHashMap<UUID, User>();
 
-    public User findUserById(final UUID id) {
+    public User findOne(final UUID id) {
         return this.users.get(id);
     }
 

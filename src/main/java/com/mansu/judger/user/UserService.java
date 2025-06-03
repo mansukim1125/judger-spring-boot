@@ -20,7 +20,7 @@ public class UserService {
     }
 
     public User getUser(UUID id) {
-        User user = this.userRepository.findUserById(id);
+        User user = this.userRepository.findOne(id);
         if (user == null) {
             return null;
         }
