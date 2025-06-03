@@ -10,10 +10,24 @@ public class UserRepository {
     private final ConcurrentHashMap<UUID, User> users = new ConcurrentHashMap<UUID, User>();
 
     public User findOne(final UUID id) {
-        return this.users.get(id);
+        User user = this.users.get(id);
+        return new User(
+            user.id(),
+            user.name(),
+            user.password(),
+            user.email()
+        );
     }
 
     public void create(User user) {
-        this.users.put(user.id(), user);
+        this.users.put(
+            user.id(),
+            new User(
+                user.id(),
+                user.name(),
+                user.password(),
+                user.email()
+            )
+        );
     }
 }
