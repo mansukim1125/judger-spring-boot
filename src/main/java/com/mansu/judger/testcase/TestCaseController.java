@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import jakarta.validation.Valid;
+
 @RestController
 public class TestCaseController {
     private TestCaseService testCaseService;
@@ -23,7 +25,7 @@ public class TestCaseController {
     @PostMapping("/problems/{problemId}/testcases")
     public ResponseEntity<CreateTestCaseResponseDto> createTestCase(
         @PathVariable("problemId") UUID problemId,
-        @RequestBody CreateTestCaseRequestDto request
+        @RequestBody @Valid CreateTestCaseRequestDto request
     ) throws URISyntaxException {
         UUID id = this.testCaseService.createTestCase(
             problemId,
