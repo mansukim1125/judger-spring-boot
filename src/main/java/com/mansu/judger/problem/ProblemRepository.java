@@ -12,6 +12,8 @@ public class ProblemRepository {
 
     public Problem findOne(final UUID id) {
         Problem problem = this.problems.get(id);
+        if (problem == null) return null;
+
         return new Problem(
             problem.id(),
             problem.title(),

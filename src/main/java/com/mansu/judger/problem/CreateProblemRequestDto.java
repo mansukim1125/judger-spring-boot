@@ -1,3 +1,10 @@
 package com.mansu.judger.problem;
 
-public record CreateProblemRequestDto(String title, String description, int timeLimit, int memoryLimit) {}
+import jakarta.validation.constraints.NotEmpty;
+
+public record CreateProblemRequestDto(
+    @NotEmpty String title,
+    @NotEmpty String description,
+    int timeLimit,
+    int memoryLimit
+) {}

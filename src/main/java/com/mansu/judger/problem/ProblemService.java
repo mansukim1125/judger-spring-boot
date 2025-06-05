@@ -16,7 +16,7 @@ public class ProblemService {
     public Problem getProblem(UUID problemId) {
         Problem problem = this.problemRepository.findOne(problemId);
         if (problem == null) {
-            // throw new NotFoundException("Problem is not found.");
+            throw new ProblemNotFoundException("문제가 존재하지 않습니다.");
         }
         return problem;
     }
@@ -27,6 +27,13 @@ public class ProblemService {
 
     public UUID createProblem(String title, String description, int timeLimit, int memoryLimit) {
         UUID id = UUID.randomUUID();
+
+        boolean alreadyExists = this.problemRepository.findOne(id) != null;
+
+        if (alreadyExists) {
+            throw new ProblemAlreadyExistsException("ID 가 중복된 문제가 존재합니다.");
+        }
+
         Problem newProblem = new Problem(
             id,
             title,
