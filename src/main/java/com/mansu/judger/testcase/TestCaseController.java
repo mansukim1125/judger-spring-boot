@@ -36,7 +36,7 @@ public class TestCaseController {
             .body(new CreateTestCaseResponseDto(id));
     }
 
-    @GetMapping("/problems/{problemId}")
+    @GetMapping("/problems/{problemId}/testcases")
     public ResponseEntity<ArrayList<TestCase>> getTestCasesByProblemId(
         @PathVariable("problemId") UUID problemId
     ) {
