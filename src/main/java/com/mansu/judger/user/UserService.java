@@ -22,7 +22,7 @@ public class UserService {
     public User getUser(UUID id) {
         User user = this.userRepository.findOne(id);
         if (user == null) {
-            return null;
+            throw new UserNotFoundException("유저가 존재하지 않습니다.");
         }
         return user;
     }
