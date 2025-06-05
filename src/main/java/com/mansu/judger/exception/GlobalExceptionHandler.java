@@ -9,7 +9,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(BaseException.class)
     public ResponseEntity<ExceptionResponseDto> handleException(BaseException e) {
         return ResponseEntity
-            .badRequest()
+            .status(e.getHttpStatus())
             .body(
                 new ExceptionResponseDto(
                     e.getMessage(),
