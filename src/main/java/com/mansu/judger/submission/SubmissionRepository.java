@@ -12,6 +12,7 @@ public class SubmissionRepository {
 
     public Submission findOne(UUID id) {
         Submission submission = this.submissions.get(id);
+        if (submission == null) return null;
         return new Submission(
             submission.id(),
             submission.problemId(),
