@@ -34,22 +34,14 @@ public class SubmissionService {
         String code
     ) {
         Problem problem = this.problemService.getProblem(problemId);
-        if (problem == null) {
-            // throw 
-        }
-
         User user = this.userService.getUser(userId);
-        if (user == null) {
-            // throw 
-        }
 
         UUID id = UUID.randomUUID();
-
         this.submissionRepository.create(
             new Submission(
                 id,
-                problemId,
-                userId,
+                problem.id(),
+                user.id(),
                 language,
                 code
             )
@@ -61,13 +53,18 @@ public class SubmissionService {
     }
 
     public Submission getSubmission(UUID id) {
-        return this.submissionRepository.findOne(id);
+        Submission submission = this.submissionRepository.findOne(id);
+        if (submission == null) {
+            throw new SubmissionNotFoundException("제출이 존재하지 않습니다.");
+        }
+        return submission;
     }
 
     public ArrayList<Submission> getSubmissionsByProblemId(UUID problemId) {
+        Problem problem = this.problemService.getProblem(problemId);
         return new ArrayList<>(
             this.submissionRepository
-                .findMany(problemId)
+                .findMany(problem.id())
                 .toList()
         );
     }
