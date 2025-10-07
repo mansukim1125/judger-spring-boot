@@ -5,6 +5,7 @@ import jakarta.validation.constraints.NotEmpty;
 public record CreateProblemRequestDto(
     @NotEmpty String title,
     @NotEmpty String description,
-    int timeLimit,
-    int memoryLimit
+    long cpuTimeLimit,
+    long wallTimeLimit, 
+    long memoryLimit
 ) {}

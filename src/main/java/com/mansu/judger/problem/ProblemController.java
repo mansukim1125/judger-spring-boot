@@ -49,7 +49,8 @@ public class ProblemController {
         UUID id = this.problemService.createProblem(
             request.title(),
             request.description(),
-            request.timeLimit(),
+            request.cpuTimeLimit(),
+            request.wallTimeLimit(),
             request.memoryLimit()
         );
         return ResponseEntity

@@ -18,7 +18,8 @@ public class ProblemRepository {
             problem.id(),
             problem.title(),
             problem.description(),
-            problem.timeLimit(),
+            problem.cpuTimeLimit(),
+            problem.wallTimeLimit(),
             problem.memoryLimit()
         );
     }
@@ -31,7 +32,14 @@ public class ProblemRepository {
                 return problem.title().contains(title) || problem.description().contains(description);
             })
             .map(problem -> {
-                return new Problem(problem.id(), problem.title(), problem.description(), problem.timeLimit(), problem.memoryLimit());
+                return new Problem(
+                    problem.id(),
+                    problem.title(),
+                    problem.description(),
+                    problem.cpuTimeLimit(),
+                    problem.wallTimeLimit(),
+                    problem.memoryLimit()
+                );
             });
     }
 
@@ -42,7 +50,8 @@ public class ProblemRepository {
                 problem.id(),
                 problem.title(),
                 problem.description(),
-                problem.timeLimit(),
+                problem.cpuTimeLimit(),
+                problem.wallTimeLimit(),
                 problem.memoryLimit()
             )
         );

@@ -25,7 +25,13 @@ public class ProblemService {
         return new ArrayList<>(this.problemRepository.findMany(title, description).toList());
     }
 
-    public UUID createProblem(String title, String description, int timeLimit, int memoryLimit) {
+    public UUID createProblem(
+        String title,
+        String description,
+        long cpuTimeLimit,
+        long wallTimeLimit,
+        long memoryLimit
+    ) {
         UUID id = UUID.randomUUID();
 
         boolean alreadyExists = this.problemRepository.findOne(id) != null;
@@ -38,7 +44,8 @@ public class ProblemService {
             id,
             title,
             description,
-            timeLimit,
+            cpuTimeLimit,
+            wallTimeLimit,
             memoryLimit
         );
 
